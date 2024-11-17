@@ -1,0 +1,47 @@
+commit 09aa076be60e25d5b437c987e6e9b4289fedd2ca
+Author: christine nguyen <cminhng@cmng-MacBook-Pro.local>
+Date:   Sun Nov 17 11:27:30 2024 -0800
+
+    passing test 5 - added exception handling for too big number
+
+commit fb85365d40e62fadae37723a66a1cd9bca6b640a
+Author: christine nguyen <cminhng@cmng-MacBook-Pro.local>
+Date:   Sun Nov 17 11:14:13 2024 -0800
+
+    passing test 8 - forgot to flush
+
+commit 03cad2a033d3519a5ee02c3dfeedf7f0391161e1
+Author: christine nguyen <cminhng@cmng-MacBook-Pro.local>
+Date:   Sun Nov 17 09:56:00 2024 -0800
+
+    removed while loop in client handling thread, passing 6/8 tests
+
+commit d367c71e12cbfe8e0b9da03ff4e08b039cb388e3
+Author: christine nguyen <cminhng@cmng-MacBook-Pro.local>
+Date:   Sun Nov 17 09:47:47 2024 -0800
+
+    print for debugging and timeout to temporarily resolve while loop issues
+
+commit 17b1d6fd4fea4449411af9c5daf1139256271fcf
+Author: christine nguyen <cminhng@cmng-MacBook-Pro.local>
+Date:   Sat Nov 16 21:44:20 2024 -0800
+
+    finished implementations of methods in client and server (sorry i forgot to commit
+
+commit aaf2108e4d254ca66173cd15eb41f41008c14d5f
+Author: christine nguyen <cminhng@cmng-MacBook-Pro.local>
+Date:   Thu Nov 14 09:53:37 2024 -0800
+
+    added basic functions to client and server
+
+commit 7cde19cc288c94e4203b3a971e065bd466df4af5
+Author: christine nguyen <cminhng@cmng-MacBook-Pro.local>
+Date:   Mon Nov 4 11:26:05 2024 -0800
+
+    added client and server files
+
+commit 9f7d303d1fca8666e58f9f2a9074960c6a4af938
+Author: cminhng <christine.nguyen1@gwmail.gwu.edu>
+Date:   Mon Nov 4 11:18:59 2024 -0800
+
+    Add files via upload
