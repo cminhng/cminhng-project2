@@ -62,7 +62,8 @@ public class Server {
                 //handshake
                 if(!in.readLine().equals(pw)){
                     out.println("couldn't handshake");
-                    //System.out.println("\ncouldn't handshake");
+                    out.flush();
+                    System.out.println("\ncouldn't handshake");
                     //disconnect client
                     cSocket.close();
                     return;
@@ -71,6 +72,7 @@ public class Server {
                         String request = in.readLine();
                         int numFactors = factor(request);
                         out.println("The number " + request + " has " + numFactors + " factors");
+                        out.flush();
                         System.out.println("\n Server responded to client request.");
                     } catch (IOException e) {
                         System.err.print("IOException");
