@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.util.Collections;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class Server {
                 //start thread
                 ClientHandler clientHandler = new ClientHandler(clientSocket);
                 clientHandler.start();
+                //System.out.println("\nclientHandler starting....");
             }catch(IOException e){
                 System.err.print("IOException");
             }
@@ -60,24 +62,39 @@ public class Server {
                 //handshake
                 if(!in.readLine().equals(pw)){
                     out.println("couldn't handshake");
+                    //System.out.println("\ncouldn't handshake");
                     //disconnect client
                     cSocket.close();
                     return;
                 }
 
+                //something is just wrong with my while loop
+                cSocket.setSoTimeout(10000);
                 //handling subsequent requests
                 while(true){
-                    String request = in.readLine();
-                    if(request == null || request.isEmpty()){
+                    //System.out.println("\nEntering loop...");
+                    String request = null;
+                    try{
+                        request = in.readLine();
+                    }catch(SocketTimeoutException e){
+                        //System.out.println("Timeout exit loop");
+                        break;
+                    }catch (IOException e){
+                        //System.out.println("Error exit loop");
+                        break;
+                    }
+                    if(request == null || request.trim().isEmpty()){
+                        //System.out.println("\nExiting loop.");
                         break;
                     }
                     int numFactors = factor(request);
                     out.println("The number " + request + " has " + numFactors + " factors");
+                    //System.out.println("\n Server responded to client request.");
                 }
             }catch(IOException e){
                 System.err.print("IOException");
-            } finally {
-                try {
+            }finally{
+                try{
                     if(out != null){
                         out.close();
                     }
@@ -87,7 +104,7 @@ public class Server {
                     if(cSocket != null){
                         cSocket.close();
                     }
-                } catch (IOException e) {
+                }catch(IOException e){
                     System.err.print("IOException");
                 }
             }

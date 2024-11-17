@@ -20,6 +20,11 @@ public class Client {
         System.out.println("\nClient request: " + number);
         String str = in.readLine();
         System.out.println("\nServer reply: " + str);
+
+        // //empty request for exiting while loop in server???
+        // out.println();
+        // out.flush();
+
         return str;
     }
     public void handshake(){
