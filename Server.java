@@ -66,31 +66,40 @@ public class Server {
                     //disconnect client
                     cSocket.close();
                     return;
+                }else{
+                    try {
+                        String request = in.readLine();
+                        int numFactors = factor(request);
+                        out.println("The number " + request + " has " + numFactors + " factors");
+                        System.out.println("\n Server responded to client request.");
+                    } catch (IOException e) {
+                        System.err.print("IOException");
+                    }
                 }
 
                 //something is just wrong with my while loop
-                cSocket.setSoTimeout(10000);
+                // cSocket.setSoTimeout(0000);
                 //handling subsequent requests
-                while(true){
-                    //System.out.println("\nEntering loop...");
-                    String request = null;
-                    try{
-                        request = in.readLine();
-                    }catch(SocketTimeoutException e){
-                        //System.out.println("Timeout exit loop");
-                        break;
-                    }catch (IOException e){
-                        //System.out.println("Error exit loop");
-                        break;
-                    }
-                    if(request == null || request.trim().isEmpty()){
-                        //System.out.println("\nExiting loop.");
-                        break;
-                    }
-                    int numFactors = factor(request);
-                    out.println("The number " + request + " has " + numFactors + " factors");
-                    //System.out.println("\n Server responded to client request.");
-                }
+                // while(true){
+                //     //System.out.println("\nEntering loop...");
+                //     String request = null;
+                //     try{
+                //         request = in.readLine();
+                //     }catch(SocketTimeoutException e){
+                //         //System.out.println("Timeout exit loop");
+                //         break;
+                //     }catch (IOException e){
+                //         //System.out.println("Error exit loop");
+                //         break;
+                //     }
+                //     if(request == null || request.trim().isEmpty()){
+                //         //System.out.println("\nExiting loop.");
+                //         break;
+                //     }
+                //     int numFactors = factor(request);
+                //     out.println("The number " + request + " has " + numFactors + " factors");
+                //     //System.out.println("\n Server responded to client request.");
+                // }
             }catch(IOException e){
                 System.err.print("IOException");
             }finally{
