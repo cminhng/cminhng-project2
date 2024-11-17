@@ -63,45 +63,29 @@ public class Server {
                 if(!in.readLine().equals(pw)){
                     out.println("couldn't handshake");
                     out.flush();
-                    System.out.println("\ncouldn't handshake");
+                    //System.out.println("\ncouldn't handshake");
                     //disconnect client
                     cSocket.close();
                     return;
                 }else{
                     try {
                         String request = in.readLine();
+                        try{
+                            int num = Integer.parseInt(request);
+                        }catch(NumberFormatException e){
+                            out.println("There was an exception on the server");
+                            out.flush();
+                        }
                         int numFactors = factor(request);
                         out.println("The number " + request + " has " + numFactors + " factors");
                         out.flush();
-                        System.out.println("\n Server responded to client request.");
+                        //System.out.println("\n Server responded to client request.");
                     } catch (IOException e) {
+                        out.println("There was an exception on the server");
+                        out.flush();
                         System.err.print("IOException");
                     }
                 }
-
-                //something is just wrong with my while loop
-                // cSocket.setSoTimeout(0000);
-                //handling subsequent requests
-                // while(true){
-                //     //System.out.println("\nEntering loop...");
-                //     String request = null;
-                //     try{
-                //         request = in.readLine();
-                //     }catch(SocketTimeoutException e){
-                //         //System.out.println("Timeout exit loop");
-                //         break;
-                //     }catch (IOException e){
-                //         //System.out.println("Error exit loop");
-                //         break;
-                //     }
-                //     if(request == null || request.trim().isEmpty()){
-                //         //System.out.println("\nExiting loop.");
-                //         break;
-                //     }
-                //     int numFactors = factor(request);
-                //     out.println("The number " + request + " has " + numFactors + " factors");
-                //     //System.out.println("\n Server responded to client request.");
-                // }
             }catch(IOException e){
                 System.err.print("IOException");
             }finally{
@@ -130,7 +114,7 @@ public class Server {
 
     public void disconnect(){
         try {
-            if(serverSocket != null && !serverSocket.isClosed()){
+            if(serverSocket != null){
                 serverSocket.close();
             }
         } catch (IOException e) {

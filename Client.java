@@ -17,10 +17,10 @@ public class Client {
     public String request(String number) throws IOException{
         out.println(number);
         out.flush();
-        System.out.println("\nClient request: " + number);
+        //System.out.println("\nClient request: " + number);
         String str = in.readLine();
-        System.out.println("\nServer reply: " + str);
-        
+        //System.out.println("\nServer reply: " + str);
+
         return str;
     }
     public void handshake(){
@@ -37,7 +37,7 @@ public class Client {
             if(in != null){
                 in.close();
             }
-            if(socket != null && !socket.isClosed()){
+            if(socket != null){
                 socket.close();
             }
         }catch(IOException e){
